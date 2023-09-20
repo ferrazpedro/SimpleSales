@@ -3,16 +3,18 @@ package com.eval.simplesales.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.eval.simplesales.data.local.interfaces.SalesDAO
-import com.eval.simplesales.data.local.models.Converters
-import com.eval.simplesales.data.local.models.SalesBD
+import com.eval.simplesales.data.local.Entities.SaleEntity
+import com.eval.simplesales.data.local.interfaces.SaleDAO
+import com.eval.simplesales.data.mappers.Converters
+import kotlinx.serialization.ExperimentalSerializationApi
 
+@ExperimentalSerializationApi
 @Database(
     entities = [
-        SalesBD::class],
+        SaleEntity::class],
     version = 0
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun salesDAO(): SalesDAO
+    abstract fun salesDAO(): SaleDAO
 }

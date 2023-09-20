@@ -1,16 +1,17 @@
-package com.eval.simplesales.data.local.models
+package com.eval.simplesales.data.local.Entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.eval.simplesales.data.mappers.Converters
 import com.eval.simplesales.domain.models.Product
 import com.eval.simplesales.domain.models.Sale
 import kotlinx.serialization.ExperimentalSerializationApi
 
 @ExperimentalSerializationApi
 @Entity(tableName = "sales")
-class SalesBD(
+class SaleEntity(
 
     @ColumnInfo(name = "sale_id")
     @PrimaryKey
@@ -27,15 +28,9 @@ class SalesBD(
         saleId: Int,
         client: String?,
         products: ArrayList<Product?>
-    ): this(
+    ) : this(
         saleId = saleId,
         client = client,
         products = Converters.convertProductsToGson(products)
-    )
-
-    fun convertBDtoModel(saleBD: SalesBD) = Sale(
-        saleId = saleBD.saleId,
-        client = saleBD.client,
-        products = Converters.convertJsonToProducts(saleBD.products)
     )
 }

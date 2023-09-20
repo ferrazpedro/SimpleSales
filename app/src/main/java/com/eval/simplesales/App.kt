@@ -17,4 +17,13 @@ class App: Application() {
             modules(simpleSalesModules)
         }
     }
+
+    companion object {
+        val appName = "com.eval.simplesales"
+        lateinit var instance: App
+    }
+
+    init {
+        instance = this
+    }
 }
