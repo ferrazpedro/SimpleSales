@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">SimpleSales</string>
+    <string name="see_history_button">Abrir Histórico</string>
+    <string name="make_sale_button">Fazer Venda</string>
+    <string name="total_sales_income_title">Total de Vendas: R$ </string>
+    <string name="sale_number_value">Número do Pedido: </string>
+    <string name="zero_value_temp">00.00</string>
+    <string name="client_title">Cliente:</string>
+    <string name="client_name_hint">Escreva o nome do cliente aqui</string>
+    <string name="product_info_title">Produto:</string>
+    <string name="product_name_hint">Nome do Produto</string>
+    <string name="product_quantity_hint">Quantidade</string>
+    <string name="product_price_hint">Valor Unitário</string>
+    <string name="brazilian_real_symbol">R$ </string>
+    <string name="product_total_price_title">Valor Total do Item:</string>
+    <string name="product_include_button">Incluir</string>
+    <string name="product_final_quantity_title">"Quantidade Total de Itens: "</string>
+    <string name="product_final_price_title">Valor Total do Pedido: R$ </string>
+    <string name="product_sale_cancel_button">Cancelar</string>
+    <string name="product_sale_save_button">Salvar</string>
+    <string name="quantity_symbol">X </string>
+</resources>
