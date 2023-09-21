@@ -13,3 +13,5 @@ val db = Room.databaseBuilder(
     .fallbackToDestructiveMigration() //Destrói toda a database se o schema do banco não estiver compatível -> drop table all
     .allowMainThreadQueries() //Queries na main thread
     .build()
+
+const val zero = 0.0

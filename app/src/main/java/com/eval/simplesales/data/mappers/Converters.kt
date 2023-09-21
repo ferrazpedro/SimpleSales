@@ -2,7 +2,7 @@ package com.eval.simplesales.data.mappers
 
 import android.text.TextUtils
 import androidx.room.TypeConverter
-import com.eval.simplesales.data.local.Entities.SaleEntity
+import com.eval.simplesales.data.local.entities.SaleEntity
 import com.eval.simplesales.domain.models.Product
 import com.eval.simplesales.domain.models.Sale
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -30,6 +30,7 @@ object Converters {
     fun convertSaleEntitytoModel(saleBD: SaleEntity) = Sale(
         saleId = saleBD.saleId,
         client = saleBD.client,
+        totalPrice = saleBD.totalPrice,
         products = convertJsonToProducts(saleBD.products)
     )
 }

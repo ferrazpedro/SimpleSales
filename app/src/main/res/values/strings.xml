@@ -4,7 +4,7 @@
     <string name="make_sale_button">Fazer Venda</string>
     <string name="total_sales_income_title">Total de Vendas: R$ </string>
     <string name="sale_number_value">Número do Pedido: </string>
-    <string name="zero_value_temp">00.00</string>
+    <string name="zero_value_temp">0.00</string>
     <string name="client_title">Cliente:</string>
     <string name="client_name_hint">Escreva o nome do cliente aqui</string>
     <string name="product_info_title">Produto:</string>

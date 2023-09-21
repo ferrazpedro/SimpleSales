@@ -6,6 +6,7 @@ data class Product(
     val productId: Int,
     var name: String?,
     var price: Double?,
+    var totalPrice: Double?,
     var quantity: Int?,
     var description: String?
 ) : Serializable

@@ -9,7 +9,7 @@ import com.eval.simplesales.databinding.SimplesalesMakeSaleActivityBinding
 
 class SimpleSalesMakeSaleActivity: AppCompatActivity() {
 
-    val viewModel: SimpleSalesMakeSaleViewModel by viewModel()
+    private val viewModel: SimpleSalesMakeSaleViewModel by viewModel()
 
     lateinit var binding: SimplesalesMakeSaleActivityBinding
 

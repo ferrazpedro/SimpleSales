@@ -1,4 +1,4 @@
-package com.eval.simplesales.data.local.Entities
+package com.eval.simplesales.data.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -6,7 +6,6 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.eval.simplesales.data.mappers.Converters
 import com.eval.simplesales.domain.models.Product
-import com.eval.simplesales.domain.models.Sale
 import kotlinx.serialization.ExperimentalSerializationApi
 
 @ExperimentalSerializationApi
@@ -20,6 +19,9 @@ class SaleEntity(
     @ColumnInfo(name = "client")
     val client: String?,
 
+    @ColumnInfo(name = "total_price")
+    val totalPrice: Double?,
+
     @ColumnInfo(name = "products")
     val products: String
 ) {
@@ -27,10 +29,12 @@ class SaleEntity(
     constructor(
         saleId: Int,
         client: String?,
+        totalPrice: Double?,
         products: ArrayList<Product?>
     ) : this(
         saleId = saleId,
         client = client,
+        totalPrice = totalPrice,
         products = Converters.convertProductsToGson(products)
     )
 }

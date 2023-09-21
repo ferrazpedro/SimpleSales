@@ -19,7 +19,7 @@ class App: Application() {
     }
 
     companion object {
-        val appName = "com.eval.simplesales"
+        const val appName = "com.eval.simplesales"
         lateinit var instance: App
     }
 

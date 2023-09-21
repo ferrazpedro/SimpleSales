@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.eval.simplesales.data.local.Entities.SaleEntity
+import com.eval.simplesales.data.local.entities.SaleEntity
 import com.eval.simplesales.domain.models.Sale
 import kotlinx.serialization.ExperimentalSerializationApi
 
