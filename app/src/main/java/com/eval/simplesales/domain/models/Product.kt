@@ -1,12 +1,12 @@
 package com.eval.simplesales.domain.models
 
+import com.eval.simplesales.utils.zeroDouble
 import java.io.Serializable
 
 data class Product(
-    val productId: Int,
-    var name: String?,
-    var price: Double?,
-    var totalPrice: Double?,
-    var quantity: Int?,
-    var description: String?
+    var name: String = "",
+    var price: Double = zeroDouble,
+    var totalPrice: Double = zeroDouble,
+    var quantity: Int = 1,
+    var description: String? = ""
 ) : Serializable

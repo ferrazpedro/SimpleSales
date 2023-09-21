@@ -20,8 +20,7 @@ class SimpleSalesLauncherViewModel(
     var isError = ObservableField(false)
 
     fun getTotalSalesValue() {
-
-        viewModelScope.launch() {0
+        viewModelScope.launch() {
             try {
                 val totalSalesValue = getTotalSalesValueUC.execute()
 

@@ -9,7 +9,7 @@ import com.eval.simplesales.databinding.SimplesalesLauncherActivityBinding
 import com.eval.simplesales.ui.history.SimpleSalesHistoryActivity
 import com.eval.simplesales.utils.Response
 import com.eval.simplesales.utils.Status
-import com.eval.simplesales.utils.zero
+import com.eval.simplesales.utils.zeroDouble
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SimpleSalesLauncherActivity : AppCompatActivity() {
@@ -21,10 +21,8 @@ class SimpleSalesLauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: SimplesalesLauncherActivityBinding =
-            DataBindingUtil.setContentView(this, R.layout.simplesales_launcher_activity)
+        binding = DataBindingUtil.setContentView(this, R.layout.simplesales_launcher_activity)
         binding.viewModel = viewModel
-        this.binding = binding
 
         viewModel.getResponseSalesValue().observe(this) { response -> processTotalSales(response) }
 
@@ -56,7 +54,7 @@ class SimpleSalesLauncherActivity : AppCompatActivity() {
 
             else -> {
                 viewModel.isError.set(true)
-                viewModel.setTotalSales(zero)
+                viewModel.setTotalSales(zeroDouble)
             }
         }
     }

@@ -14,4 +14,5 @@ val db = Room.databaseBuilder(
     .allowMainThreadQueries() //Queries na main thread
     .build()
 
-const val zero = 0.0
+const val zeroDouble = 0.0
+const val zeroInt = 0

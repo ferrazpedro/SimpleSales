@@ -19,6 +19,9 @@ class SaleEntity(
     @ColumnInfo(name = "client")
     val client: String?,
 
+    @ColumnInfo(name = "total_itens")
+    val totalItens: Int?,
+
     @ColumnInfo(name = "total_price")
     val totalPrice: Double?,
 
@@ -29,11 +32,13 @@ class SaleEntity(
     constructor(
         saleId: Int,
         client: String?,
+        totalItens: Int?,
         totalPrice: Double?,
         products: ArrayList<Product?>
     ) : this(
         saleId = saleId,
         client = client,
+        totalItens = totalItens,
         totalPrice = totalPrice,
         products = Converters.convertProductsToGson(products)
     )
