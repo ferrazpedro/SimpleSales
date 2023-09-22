@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.eval.simplesales.R
 import com.eval.simplesales.databinding.SimplesalesLauncherActivityBinding
 import com.eval.simplesales.ui.history.SimpleSalesHistoryActivity
+import com.eval.simplesales.ui.make_sale.SimpleSalesMakeSaleActivity
 import com.eval.simplesales.utils.Response
 import com.eval.simplesales.utils.Status
 import com.eval.simplesales.utils.zeroDouble
@@ -37,7 +38,7 @@ class SimpleSalesLauncherActivity : AppCompatActivity() {
     }
 
     private fun openMakeSaleActivity() {
-        val intent = Intent(this, SimpleSalesLauncherActivity::class.java)
+        val intent = Intent(this, SimpleSalesMakeSaleActivity::class.java)
         this.startActivity(intent)
     }
 

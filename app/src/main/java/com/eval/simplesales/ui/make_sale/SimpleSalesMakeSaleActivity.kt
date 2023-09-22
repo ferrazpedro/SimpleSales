@@ -7,6 +7,8 @@ import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.eval.simplesales.R
 import com.eval.simplesales.databinding.SimplesalesMakeSaleActivityBinding
 import com.eval.simplesales.utils.Response
@@ -18,6 +20,9 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
     private val viewModel: SimpleSalesMakeSaleViewModel by viewModel()
 
     lateinit var binding: SimplesalesMakeSaleActivityBinding
+
+    private lateinit var recycler: RecyclerView
+    private lateinit var adapter: SimpleSalesMakeSaleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +57,7 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
         viewModel.getSalesForSaleNumber()
         binding.saleNumberValueTextview.text = viewModel.activeSale.saleId.toString()
 
-        updateValues()
+//        updateValues()
 
         binding.productIncludeButton.setOnClickListener {
             viewModel.includeProductInSale()
@@ -62,13 +67,15 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
         binding.productSaleSaveButton.setOnClickListener {
             viewModel.postSale()
         }
+
+        initRecyclerView()
     }
 
     private fun updateValues() {
-        binding.clientInfoNameEdittext.setText(viewModel.activeSale.client)
-        binding.productInfoNameEdittext.setText(viewModel.activeProduct.name)
-        binding.productInfoQuantityEdittext.setText(viewModel.activeProduct.quantity)
-        binding.productInfoPriceEdittext.setText(viewModel.activeProduct.price.toString())
+        binding.clientInfoNameEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeSale.client)
+        binding.productInfoNameEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.name)
+        binding.productInfoQuantityEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.quantity.toString())
+        binding.productInfoPriceEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.price.toString())
 
         binding.productTotalPriceValueTextview.text = viewModel.getTotalPriceInProduct().toString()
 
@@ -77,7 +84,6 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
     }
 
     private fun initClientNameEditText() {
-        binding.clientInfoNameEdittext.inputType = InputType.TYPE_CLASS_TEXT
         binding.clientInfoNameEdittext.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {
@@ -106,7 +112,6 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
     }
 
     private fun initProductInfoNameEditText() {
-        binding.productInfoNameEdittext.inputType = InputType.TYPE_CLASS_TEXT
         binding.productInfoNameEdittext.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {
@@ -135,7 +140,6 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
     }
 
     private fun initProductInfoQuantityEditText() {
-        binding.productInfoQuantityEdittext.inputType = InputType.TYPE_CLASS_NUMBER
         binding.productInfoQuantityEdittext.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {
@@ -157,14 +161,14 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
-                    viewModel.activeProduct.quantity = binding.productInfoQuantityEdittext.toString().toInt()
+                    viewModel.activeProduct.quantity = binding.productInfoQuantityEdittext.text.toString().toInt()
+                    updateValues()
                 }
             }
         )
     }
 
     private fun initProdutInfoPriceEditText() {
-        binding.productInfoPriceEdittext.inputType = InputType.TYPE_CLASS_NUMBER
         binding.productInfoPriceEdittext.addTextChangedListener(
             object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {
@@ -186,9 +190,19 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
-                    viewModel.activeProduct.price = binding.productInfoPriceEdittext.toString().toDouble()
+                    viewModel.activeProduct.price = binding.productInfoPriceEdittext.text.toString().toDouble()
+                    updateValues()
                 }
             }
         )
+    }
+
+    private fun initRecyclerView() {
+        recycler = binding.productRecyclerview
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.setItemViewCacheSize(10)
+
+        adapter = SimpleSalesMakeSaleAdapter()
+        recycler.adapter = adapter
     }
 }

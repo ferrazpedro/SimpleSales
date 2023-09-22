@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
->
+        >
 
     <application
+            android:name="com.eval.simplesales.App"
             android:allowBackup="true"
             android:fullBackupContent="@xml/backup_rules"
             tools:targetApi="31"
@@ -12,6 +13,36 @@
             android:icon="@mipmap/ic_launcher"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.SimpleSales"/>
+            android:theme="@style/Theme.SimpleSales">
+
+        <activity
+                android:name=".ui.launcher.SimpleSalesLauncherActivity"
+                android:screenOrientation="portrait"
+                android:configChanges="orientation|screenSize"
+                android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+                android:name=".ui.make_sale.SimpleSalesMakeSaleActivity"
+                android:label="Realize uma Venda"
+                android:screenOrientation="portrait"
+                android:configChanges="orientation|screenSize"/>
+
+        <activity
+                android:name=".ui.history.SimpleSalesHistoryActivity"
+                android:label="Histórico"
+                android:screenOrientation="portrait"
+                android:configChanges="orientation|screenSize"/>
+
+    </application>
+
 
 </manifest>
