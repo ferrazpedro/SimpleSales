@@ -12,22 +12,24 @@ import com.eval.simplesales.ui.launcher.SimpleSalesLauncherViewModel
 import com.eval.simplesales.ui.make_sale.SimpleSalesMakeSaleViewModel
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    factory<SaleRepository> { SaleRepositoryImpl() }
+    factoryOf<SaleRepository>(::SaleRepositoryImpl)
 }
 
 val domainModule = module {
-    factory { PostSaleUC(get()) }
-    factory { GetTotalSalesValueUC(get()) }
-    factory { GetSalesUC(get()) }
+    factoryOf(::PostSaleUC)
+    factoryOf(::GetTotalSalesValueUC)
+    factoryOf(::GetSalesUC)
 }
 
 val presentationModule = module {
-    viewModel { SimpleSalesLauncherViewModel(get()) }
-    viewModel { SimpleSalesMakeSaleViewModel(get(), get()) }
-    viewModel { SimpleSalesHistoryViewModel(get()) }
+    viewModelOf(::SimpleSalesLauncherViewModel)
+    viewModelOf(::SimpleSalesMakeSaleViewModel)
+    viewModelOf(::SimpleSalesHistoryViewModel)
 }
 
 val simpleSalesModules = repositoryModule + domainModule + presentationModule

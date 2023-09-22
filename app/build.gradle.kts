@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
     // Koin
+    implementation("io.insert-koin:koin-core:3.4.0")
     implementation("io.insert-koin:koin-android:3.4.0")
 
     // Koin Tests
@@ -61,5 +62,4 @@ dependencies {
 
     implementation("androidx.room:room-runtime:2.5.2")
     annotationProcessor("androidx.room:room-compiler:2.5.2")
-
 }

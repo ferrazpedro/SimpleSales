@@ -2,10 +2,8 @@ package com.eval.simplesales.ui.make_sale
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputType
 import android.text.TextWatcher
 import androidx.appcompat.app.AppCompatActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +12,10 @@ import com.eval.simplesales.databinding.SimplesalesMakeSaleActivityBinding
 import com.eval.simplesales.utils.Response
 import com.eval.simplesales.utils.Status
 import com.eval.simplesales.utils.zeroDouble
+import com.eval.simplesales.utils.zeroInt
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SimpleSalesMakeSaleActivity: AppCompatActivity() {
+class SimpleSalesMakeSaleActivity : AppCompatActivity() {
 
     private val viewModel: SimpleSalesMakeSaleViewModel by viewModel()
 
@@ -57,7 +57,7 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
         viewModel.getSalesForSaleNumber()
         binding.saleNumberValueTextview.text = viewModel.activeSale.saleId.toString()
 
-//        updateValues()
+        updateValues()
 
         binding.productIncludeButton.setOnClickListener {
             viewModel.includeProductInSale()
@@ -74,8 +74,10 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
     private fun updateValues() {
         binding.clientInfoNameEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeSale.client)
         binding.productInfoNameEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.name)
-        binding.productInfoQuantityEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.quantity.toString())
-        binding.productInfoPriceEdittext.text = Editable.Factory.getInstance().newEditable(viewModel.activeProduct.price.toString())
+        binding.productInfoQuantityEdittext.text =
+            Editable.Factory.getInstance().newEditable(viewModel.activeProduct.quantity.toString())
+        binding.productInfoPriceEdittext.text =
+            Editable.Factory.getInstance().newEditable(viewModel.activeProduct.price.toString())
 
         binding.productTotalPriceValueTextview.text = viewModel.getTotalPriceInProduct().toString()
 
@@ -161,7 +163,8 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
-                    viewModel.activeProduct.quantity = binding.productInfoQuantityEdittext.text.toString().toInt()
+                    viewModel.activeProduct.quantity =
+                        binding.productInfoQuantityEdittext.text.toString().toIntOrNull() ?: zeroInt
                     updateValues()
                 }
             }
@@ -190,7 +193,8 @@ class SimpleSalesMakeSaleActivity: AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
-                    viewModel.activeProduct.price = binding.productInfoPriceEdittext.text.toString().toDouble()
+                    viewModel.activeProduct.price =
+                        binding.productInfoPriceEdittext.text.toString().toDoubleOrNull() ?: zeroDouble
                     updateValues()
                 }
             }
